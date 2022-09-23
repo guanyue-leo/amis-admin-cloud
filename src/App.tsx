@@ -6,24 +6,18 @@ import 'amis/lib/helper.css';
 import 'amis/sdk/iconfont.css';
 
 import { BrowserRouter as Router } from 'react-router-dom';
-import { ToastComponent, AlertComponent, Layout } from 'amis';
-import { renderAside, renderHeader } from './Layout'
+import { Route, Switch } from 'react-router';
+import Layout from './Layout'
 import AMISComponent from './AMISComponent'
 
 class APP extends React.Component<any, any> {
   render() {
     return (
       <Router>
-        <Layout
-          aside={renderAside()}
-          header={renderHeader()}
-          folded={false}
-          offScreen={false}
-        >
-            <ToastComponent key="toast" position={'top-right'} />
-            <AlertComponent key="alert" />
-            <AMISComponent />
-        </Layout>
+        <Switch>
+          <Route path="/fullscreen" render={() => <AMISComponent />}/>
+          <Route render={() => <Layout />}/>
+        </Switch>
       </Router>
     );
   }
