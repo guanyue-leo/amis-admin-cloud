@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { matchPath } from 'react-router';
 import { Link } from 'react-router-dom';
 import { AsideNav } from 'amis';
-import axios from 'axios';
 
 function isActive(link: any, location: any) {
   const ret = matchPath(location.pathname, {
@@ -16,13 +15,12 @@ function isActive(link: any, location: any) {
 
 export function renderHeader() {
   const { site } = window
-  console.log('site2', site)
   return (
       <div>
           <div className={`cxd-Layout-brandBar`}>
-              <div className={`cxd-Layout-brand`}>
-                  <i className="fa fa-paw"></i>
-                  <span className="hidden-folded m-l-sm">amin</span>
+              <div className={`cxd-Layout-brand`} style={{textAlign: 'center', overflow: 'hidden', height: 50}}>
+                  <img src={site.logoUrl} style={{width: 120, height: 'auto'}}/>
+                  <p className="hidden-folded">{site.name}</p>
               </div>
           </div>
           <div className={`cxd-Layout-headerBar`}>
@@ -34,56 +32,15 @@ export function renderHeader() {
   );
 }
 
-const navigations = [
-  {
-    id: 1,
-    label: '分类',
-    icon: 'fa fa-file',
-    children: [
-      {
-        id: 2,
-        path: '/test',
-        label: '页面1',
-        icon: 'fa fa-file'
-      },
-      {
-        id: 3,
-        path: '/hello',
-        label: '页面2',
-        icon: 'fa fa-file'
-      }
-    ]
-  },
-  {
-    id: 4,
-    label: '分类2',
-    icon: 'fa fa-file',
-    children: [
-      {
-        id: 5,
-        path: '/aaa',
-        label: '页面3',
-        icon: 'fa fa-file'
-      },
-      {
-        id: 6,
-        path: '/bbb',
-        label: '页面4',
-        icon: 'fa fa-file'
-      }
-    ]
-  }
-]
-
 export function renderAside() {  
-
+  const { site } = window
   return (
       <AsideNav
           key={'folded-aside'}
           navigations={[
               {
                   label: '',
-                  children: navigations
+                  children: site.menu
               }
           ]}
           renderLink={(params: any) => {
