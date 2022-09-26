@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { matchPath } from 'react-router';
 import { Link } from 'react-router-dom';
 import { AsideNav } from 'amis';
+import axios from 'axios';
 
 function isActive(link: any, location: any) {
   const ret = matchPath(location.pathname, {
@@ -14,12 +15,14 @@ function isActive(link: any, location: any) {
 }
 
 export function renderHeader() {
+  const { site } = window
+  console.log('site2', site)
   return (
       <div>
           <div className={`cxd-Layout-brandBar`}>
               <div className={`cxd-Layout-brand`}>
                   <i className="fa fa-paw"></i>
-                  <span className="hidden-folded m-l-sm">amis-admin-cloud</span>
+                  <span className="hidden-folded m-l-sm">amin</span>
               </div>
           </div>
           <div className={`cxd-Layout-headerBar`}>
@@ -72,10 +75,6 @@ const navigations = [
   }
 ]
 
-function reloadFun() {
-  console.log('reloadFun')
-}
-
 export function renderAside() {  
 
   return (
@@ -89,8 +88,6 @@ export function renderAside() {
           ]}
           renderLink={(params: any) => {
             const {link, toggleExpand, classnames: cx, depth} = params
-            console.log('link', link)
-            console.log('params', params)
             if (link.hidden) {
                 return null;
             }
@@ -128,7 +125,7 @@ export function renderAside() {
               link.active ? (
                   <a>{children}</a>
               ) : (
-                  <Link to={link.path[0] === '/' ? link.path : `${link.path}`} onClick={() => reloadFun()}>{children}</Link>
+                  <Link to={link.path[0] === '/' ? link.path : `${link.path}`}>{children}</Link>
               )
             ) : (
                 <a
