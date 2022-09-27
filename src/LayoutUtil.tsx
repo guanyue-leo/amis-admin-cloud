@@ -18,10 +18,12 @@ export function renderHeader() {
   return (
       <div>
           <div className={`cxd-Layout-brandBar`}>
-              <div className={`cxd-Layout-brand`} style={{textAlign: 'center', overflow: 'hidden', height: 50}}>
-                  <img src={site.logoUrl} style={{width: 120, height: 'auto'}}/>
-                  <p className="hidden-folded">{site.name}</p>
-              </div>
+              <Link to="/">
+                <div className={`cxd-Layout-brand`} style={{textAlign: 'center', overflow: 'hidden', height: 50}}>
+                    <img src={site.logoUrl} style={{width: 120, height: 'auto'}}/>
+                    <p className="hidden-folded">{site.name}</p>
+                </div>
+              </Link>
           </div>
           <div className={`cxd-Layout-headerBar`}>
               <div className="m-l-auto hidden-xs pull-right" style={{position: 'absolute', right: '30px', top: '50%', transform: 'translate(0, -50%)'}}>
